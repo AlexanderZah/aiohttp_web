@@ -28,3 +28,13 @@ class ListUsersView(View):
             'users': 'empty'
         })
 
+
+class GetUserView(View):
+
+    async def get(self):
+        user_id = await self.request.query.get('id')
+        user = self.request.app.crm_accessor.get_user(user_id)
+        if user:
+            return json_response(data={'user_email': user.email})
+        return json_response(data={'user': 'not found'})
+

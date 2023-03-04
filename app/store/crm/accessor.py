@@ -4,7 +4,7 @@ import typing
 from app.crm.models import User
 
 if typing.TYPE_CHECKING:
-    from app.web.app import Application    
+    from app.web.app import Application
 
 
 class CrmAccessor:
@@ -25,3 +25,10 @@ class CrmAccessor:
 
     async def list_users(self):
         return self.app.database.get('users')
+
+    async def get_user(self, user_id):
+        users = await self.app.database.get('users')
+        for user in users:
+            if user._id == user_id:
+                return user
+        return None

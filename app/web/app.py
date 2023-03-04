@@ -9,6 +9,7 @@ from app.store import setup_accessors
 from .routes import setup_routes
 from app.store.crm.accessor import CrmAccessor
 
+from main import app
 
 class Application(AiohttpApplication):
     database: dict = {}
